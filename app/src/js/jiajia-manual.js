@@ -2,8 +2,8 @@ window.$docsify = {
     name: 'jiajiacloud',
     repo: '',
     logo: './src/image/logo.png',
-    homepage: '/zh-cn/README.md',
-    basePath: '/pages/',
+    homepage: 'zh-cn/README.md',
+    basePath: 'pages/',
     loadSidebar: true,
     loadNavbar: true,
     maxLevel: 4,
@@ -13,9 +13,18 @@ window.$docsify = {
         '/_sidebar.md': '/zh-cn/_sidebar.md',
     },
     nameLink: {
-        '/en-us': '/#/en-us/',
-        '/zh-cn': '/',
-        '/': '/',
+        '/en-us': '#',
+        '/zh-cn': '#',
+        '/': '#',
+    },
+    markdown: {
+        renderer: {
+            image: function (href, title, alt, size) {
+                var obj = this.origin.image.apply(this, arguments)
+                obj = obj.replace(/src="[^"]+"/, 'src="' + href + '"');
+                return obj
+            }
+        }
     },
     search: { // 完整配置参数
         maxAge: 86400000, // 过期时间，单位毫秒，默认一天
